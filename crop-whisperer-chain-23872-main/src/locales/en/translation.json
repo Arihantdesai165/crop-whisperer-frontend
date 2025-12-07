@@ -1,0 +1,263 @@
+{
+  "hero": {
+    "title": "AgriTrust",
+    "subtitle": "Blockchain-Powered AI Assistant for Smarter Farming",
+    "explore": "Explore Features"
+  },
+
+  "features": {
+    "title": "Smart Farming Tools for Modern Farmers",
+    "subtitle": "Make data-driven decisions with AI-powered recommendations and transparent blockchain tracking",
+
+    "crop": {
+      "title": "Smart Crop Recommendation",
+      "desc": "Get AI-powered crop suggestions based on your soil, climate, budget, and local market demand. Maximize profits with data-driven planting decisions.",
+      "p1": "Soil type analysis",
+      "p2": "Market demand insights",
+      "p3": "Budget optimization",
+      "p4": "Explainable AI reasoning"
+    },
+
+    "yield": {
+      "title": "Yield & Profit Prediction",
+      "desc": "Forecast your harvest and estimated profits using advanced AI models. Plan your resources and finances with confidence.",
+      "p1": "Accurate yield forecasts",
+      "p2": "Profit/loss breakdown",
+      "p3": "Weather data integration",
+      "p4": "PDF/CSV export"
+    },
+
+    "ai": {
+      "title": "Multilingual AI Assistant",
+      "desc": "Ask farming questions in your language with text or voice. Get instant expert advice anytime, anywhere.",
+      "p1": "Voice & text support",
+      "p2": "Multiple languages",
+      "p3": "24/7 availability",
+      "p4": "Actionable advice"
+    }
+  },
+
+  "trust": {
+    "title": "Blockchain-Verified Transparency",
+    "desc": "Every recommendation, prediction, and transaction is recorded on the blockchain. Your farming data is secure, verifiable, and tamper-proof.",
+    "i1": "Data Integrity",
+    "i2": "AI Support",
+    "i3": "Blockchain Records",
+    "i3v": "Secure"
+  },
+
+  "cta": {
+    "title": "Ready to Transform Your Farming?",
+    "desc": "Join thousands of farmers using AI and blockchain to make smarter farming decisions",
+    "button": "Start Free Today"
+  },
+
+  "footer": {
+    "text": "Powered by AI & Blockchain Technology."
+
+  },
+  "dashboard": {
+    "title": "AgriTrust",
+    "logout": "Logout",
+
+    "welcome": "Welcome back, Farmer!",
+    "subtitle": "Here's what you can do today",
+
+    "recommendCrops": "Recommend Crops",
+    "recommendCropsDesc": "Get AI-powered crop recommendations based on your farm conditions",
+    "startRecommendation": "Start Recommendation",
+
+    "predictYield": "Predict Yield",
+    "predictYieldDesc": "Forecast your harvest and estimate profits with AI models",
+    "predictYieldBtn": "Predict Yield",
+
+    "aiAssistant": "AI Assistant",
+    "aiAssistantDesc": "Chat with our AI assistant in your language",
+    "startChat": "Start Chat",
+
+    "myProfile": "My Profile",
+    "myProfileDesc": "View and update your farm details and personal information",
+    "viewProfile": "View Profile",
+
+    "myRecords": "My Records",
+    "myRecordsDesc": "Access your previous recommendations, predictions, and reports",
+    "viewRecords": "View Records",
+
+    "blockchain": "Blockchain Ledger",
+    "blockchainDesc": "View blockchain-verified transparency records of your activities",
+    "viewLedger": "View Ledger",
+
+    "transparencyTitle": "Blockchain-Verified Transparency",
+    "transparencyDesc": "All your recommendations and predictions are recorded on the blockchain for complete transparency and data integrity. Your farming decisions are secure and verifiable."
+  },
+  
+  "cropRec": {
+    "title": "Smart Crop Recommendation",
+    "farmDetails": "Farm Details",
+    "farmDesc": "Provide your farm information to get AI-powered crop recommendations",
+
+    "soilType": "Soil Type",
+    "selectSoil": "Select soil type",
+    "soilPH": "Soil pH",
+    "examplePH": "e.g. 6.5",
+
+    "soil": {
+      "sandy": "Sandy",
+      "clay": "Clay",
+      "loamy": "Loamy",
+      "silt": "Silt",
+      "peaty": "Peaty",
+      "chalky": "Chalky"
+    },
+
+    "area": "Farm Area (acres)",
+    "waterAccess": "Water Access",
+    "selectWater": "Select water access",
+
+    "water": {
+      "abundant": "Abundant (Well water)",
+      "moderate": "Moderate (Canal water)",
+      "limited": "Limited (Less water)",
+      "drip": "Drip Irrigation"
+    },
+
+    "season": "Season",
+    "selectSeason": "Select season",
+
+    "seasons": {
+      "kharif": "Kharif (Monsoon)",
+      "rabi": "Rabi (Winter)",
+      "zaid": "Zaid (Summer)",
+      "yearRound": "Year-round"
+    },
+
+    "budget": "Budget",
+    "marketPreference": "Market Preference",
+    "selectPreference": "Select preference",
+
+    "market": {
+      "local": "Local Market",
+      "export": "Export",
+      "organic": "Organic Market",
+      "contract": "Contract Farming"
+    },
+
+    "location": "Location",
+    "previousCrops": "Previous Crops",
+    "previousExample": "e.g., wheat, maize",
+
+    "analyzing": "Analyzing...",
+    "getRecommendations": "Get Crop Recommendations",
+
+    "success": "Crop recommendations generated successfully!",
+    "error": "Failed to get recommendations.",
+
+    "yourRecommendations": "Your Recommendations",
+    "confidence": "Confidence",
+    "why": "Why",
+    "expectedYield": "Expected Yield",
+    "marketDemand": "Market Demand",
+    "riskLevel": "Risk Level",
+    "downloadPDF": "Download as PDF",
+
+    "pdfSuccess": "PDF downloaded successfully!",
+    "pdfError": "Unable to generate PDF"
+  },
+  
+  "yield": {
+    "title": "Crop Yield Prediction",
+    "formTitle": "Farm & Crop Details",
+    "formDesc": "Enter your details to predict yield & profits",
+
+    "seedType": "Seed/Crop Type",
+    "seedPlaceholder": "e.g., Wheat, Rice, Corn",
+
+    "plotSize": "Plot Size (acres)",
+    "plotPlaceholder": "e.g., 5",
+
+    "season": "Season",
+    "selectSeason": "Select season",
+    "seasons": {
+      "kharif": "Kharif (Monsoon)",
+      "rabi": "Rabi (Winter)",
+      "zaid": "Zaid (Summer)"
+    },
+
+    "location": "Location",
+    "soilType": "Soil Type",
+    "selectSoil": "Select soil type",
+
+    "fertilizer": "Fertilizer Plan",
+    "irrigation": "Irrigation Plan",
+
+    "prevYield": "Previous Yield (quintals/acre)",
+    "plantingDate": "Expected Planting Date",
+
+    "predictBtn": "Predict Yield",
+    "loading": "Predicting...",
+
+    "resultsTitle": "Yield Prediction Results",
+    "predictedYield": "Predicted Yield",
+    "confidence": "Confidence",
+    "estimatedRevenue": "Estimated Revenue",
+    "profitEstimate": "Profit Estimate",
+    "costBreakdown": "Cost Breakdown",
+    "marketPrice": "Market Price",
+    "analysis": "Analysis",
+
+    "downloadPDF": "Download Report (PDF)"
+  },
+
+  "yield": {
+    "title": "Crop Yield Prediction",
+    "formTitle": "Farm & Crop Details",
+    "formDesc": "Enter your details to predict yield & profits",
+
+    "seedType": "Seed/Crop Type",
+    "seedPlaceholder": "e.g., Wheat, Rice, Corn",
+
+    "plotSize": "Plot Size (acres)",
+    "plotPlaceholder": "e.g., 5",
+
+    "season": "Season",
+    "selectSeason": "Select season",
+    "seasons": {
+      "kharif": "Kharif (Monsoon)",
+      "rabi": "Rabi (Winter)",
+      "zaid": "Zaid (Summer)"
+    },
+
+    "location": "Location",
+    "soilType": "Soil Type",
+    "selectSoil": "Select soil type",
+
+    "fertilizer": "Fertilizer Plan",
+    "irrigation": "Irrigation Plan",
+
+    "prevYield": "Previous Yield (quintals/acre)",
+    "plantingDate": "Expected Planting Date",
+
+    "predictBtn": "Predict Yield",
+    "loading": "Predicting...",
+
+    "resultsTitle": "Yield Prediction Results",
+    "predictedYield": "Predicted Yield",
+    "confidence": "Confidence",
+    "estimatedRevenue": "Estimated Revenue",
+    "profitEstimate": "Profit Estimate",
+    "costBreakdown": "Cost Breakdown",
+    "marketPrice": "Market Price",
+    "analysis": "Analysis",
+
+    "downloadPDF": "Download Report (PDF)"
+  }
+
+
+
+
+
+
+
+
+}
+

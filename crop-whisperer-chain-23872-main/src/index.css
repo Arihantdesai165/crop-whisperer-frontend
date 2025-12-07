@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Agricultural earth tones - primary greens */
+    --background: 45 15% 97%;
+    --foreground: 120 40% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 120 40% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 120 40% 15%;
+
+    /* Deep forest green - trustworthy, natural */
+    --primary: 110 45% 25%;
+    --primary-foreground: 110 20% 95%;
+    
+    /* Fresh crop green */
+    --primary-light: 105 50% 45%;
+
+    /* Soft earth background */
+    --secondary: 45 25% 92%;
+    --secondary-foreground: 120 40% 15%;
+
+    --muted: 45 15% 90%;
+    --muted-foreground: 120 15% 45%;
+
+    /* Harvest gold accent */
+    --accent: 40 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Warning red for important notices */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Sky blue for water/irrigation */
+    --info: 200 75% 50%;
+    --info-foreground: 0 0% 100%;
+
+    /* Success green for growth */
+    --success: 145 65% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 120 10% 85%;
+    --input: 120 10% 92%;
+    --ring: 110 45% 25%;
+
+    --radius: 0.75rem;
+
+    /* Gradients for depth */
+    --gradient-earth: linear-gradient(135deg, hsl(110 45% 25%), hsl(105 50% 35%));
+    --gradient-harvest: linear-gradient(135deg, hsl(40 85% 55%), hsl(35 85% 60%));
+    --gradient-sky: linear-gradient(180deg, hsl(200 75% 50%), hsl(195 70% 55%));
+    
+    /* Shadows for elevation */
+    --shadow-soft: 0 2px 8px hsla(120, 20%, 20%, 0.08);
+    --shadow-medium: 0 4px 16px hsla(120, 20%, 20%, 0.12);
+    --shadow-elevated: 0 8px 24px hsla(120, 20%, 20%, 0.16);
+    
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 120 15% 8%;
+    --foreground: 110 15% 90%;
+
+    --card: 120 12% 12%;
+    --card-foreground: 110 15% 90%;
+
+    --popover: 120 12% 12%;
+    --popover-foreground: 110 15% 90%;
+
+    --primary: 105 50% 45%;
+    --primary-foreground: 0 0% 100%;
+    
+    --primary-light: 105 50% 55%;
+
+    --secondary: 120 10% 18%;
+    --secondary-foreground: 110 15% 90%;
+
+    --muted: 120 10% 18%;
+    --muted-foreground: 110 10% 60%;
+
+    --accent: 40 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --info: 200 70% 50%;
+    --info-foreground: 0 0% 100%;
+
+    --success: 145 60% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 120 10% 22%;
+    --input: 120 10% 18%;
+    --ring: 105 50% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+.lang-toggle {
+  display: flex;
+  border: 2px solid #ff865e;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 150px;
+  cursor: pointer;
+  font-family: sans-serif;
+}
+
+.lang-option {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.active {
+  background: #ff865e;
+  color: #fff;
+}
+
+.inactive {
+  background: #ffffff;
+  color: #ff865e;
+}
+
