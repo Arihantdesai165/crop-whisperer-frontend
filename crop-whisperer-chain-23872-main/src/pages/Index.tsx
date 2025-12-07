@@ -41,9 +41,10 @@ const Index = () => {
               variant="outline"
               className="bg-background/90 backdrop-blur-sm"
             >
-              <a href="http://localhost/login/main.php?page=login">
-                {t("hero.explore")}
-              </a>
+             <Link to="/dashboard">
+    {t("hero.explore")}
+</Link>
+
             </Button>
           </div>
         </div>
