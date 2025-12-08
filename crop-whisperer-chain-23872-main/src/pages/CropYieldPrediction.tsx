@@ -31,6 +31,8 @@ const CropYieldPrediction = () => {
   const { toast } = useToast();
   const { t, i18n } = useTranslation();
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<PredictionResult | null>(null);
 
@@ -46,25 +48,27 @@ const CropYieldPrediction = () => {
     plantingDate: "",
   });
 
-  // ⭐ API REQUEST WITH LANGUAGE TRANSLATION
+  // ⭐ CALL BACKEND API
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setResult(null);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/voice-assistant`, {
-
+      const response = await fetch(`${BACKEND_URL}/api/yield-predict`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          lang: i18n.language, // ⭐ SEND SELECTED LANGUAGE
+          lang: i18n.language,
         }),
       });
 
       const data = await response.json();
-      if (data.error) throw new Error(data.error);
+
+      if (!data || data.error) {
+        throw new Error(data?.error || "Failed to generate yield prediction");
+      }
 
       setResult(data.prediction);
 
@@ -76,7 +80,7 @@ const CropYieldPrediction = () => {
     } catch (error: any) {
       toast({
         title: t("yield.toastErrorTitle"),
-        description: error.message || t("yield.toastErrorDesc"),
+        description: error?.message || t("yield.toastErrorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -104,6 +108,7 @@ const CropYieldPrediction = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      
       {/* HEADER */}
       <header className="bg-gradient-earth text-primary-foreground shadow-medium">
         <div className="container mx-auto px-4 py-6 flex items-center gap-4">
@@ -115,9 +120,7 @@ const CropYieldPrediction = () => {
 
           <div className="flex items-center gap-2">
             <TrendingUp className="h-6 w-6" />
-            <h1 className="text-2xl font-bold">
-              {t("yield.title")}
-            </h1>
+            <h1 className="text-2xl font-bold">{t("yield.title")}</h1>
           </div>
         </div>
       </header>
@@ -260,6 +263,7 @@ const CropYieldPrediction = () => {
                     </>
                   )}
                 </Button>
+
               </form>
             </CardContent>
           </Card>
@@ -336,7 +340,7 @@ const CropYieldPrediction = () => {
                     <p className="text-sm">{result.reasoning}</p>
                   </div>
 
-                  {/* PDF */}
+                  {/* PDF Button */}
                   <Button onClick={handleDownloadPDF} variant="outline" className="w-full">
                     <Download className="mr-2 h-4 w-4" />
                     {t("yield.downloadPDF")}
@@ -346,6 +350,7 @@ const CropYieldPrediction = () => {
               </Card>
             </div>
           )}
+
         </div>
       </main>
     </div>
