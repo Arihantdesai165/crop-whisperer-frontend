@@ -39,10 +39,11 @@ const AIAssistant = () => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunks = useRef<Blob[]>([]);
 
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; // 🔥 backend URL
+  // BACKEND URL FROM ENV
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   // ----------------------------------------------------
-  // 🎤 START RECORDING
+  // 🎤 START VOICE RECORDING
   // ----------------------------------------------------
   const startRecording = async () => {
     try {
@@ -56,14 +57,14 @@ const AIAssistant = () => {
         audioChunks.current.push(event.data);
       };
 
-      mediaRecorder.onstop = async () => {
+      mediaRecorder.onstop = () => {
         const audioBlob = new Blob(audioChunks.current, { type: "audio/webm" });
         sendVoiceToAI(audioBlob);
       };
 
       mediaRecorder.start();
       setIsRecording(true);
-    } catch (err) {
+    } catch {
       toast({
         title: "Microphone Error",
         description: "Cannot access microphone.",
@@ -83,7 +84,7 @@ const AIAssistant = () => {
   };
 
   // ----------------------------------------------------
-  // 🎙 SEND AUDIO → BACKEND
+  // 🎙 SEND VOICE → BACKEND → TRANSCRIBE
   // ----------------------------------------------------
   const sendVoiceToAI = async (audioBlob: Blob) => {
     setIsLoading(true);
@@ -109,13 +110,14 @@ const AIAssistant = () => {
         return;
       }
 
+      // Show user's transcribed question
       setMessages((prev) => [
         ...prev,
         { role: "user", content: data.transcription },
       ]);
 
       sendToAI(data.transcription);
-    } catch (err) {
+    } catch {
       toast({
         title: "Error",
         description: "Voice processing failed.",
@@ -125,7 +127,7 @@ const AIAssistant = () => {
   };
 
   // ----------------------------------------------------
-  // 🤖 SEND TEXT TO AI (TEXT ENDPOINT = ai-assistant)
+  // 🤖 SEND TEXT → AI ASSISTANT ENDPOINT
   // ----------------------------------------------------
   const sendToAI = async (text: string) => {
     try {
@@ -140,7 +142,7 @@ const AIAssistant = () => {
 
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
 
-      // 🔊 Voice Output
+      // 🎧 Voice Output
       if (voiceOutput) {
         const utterance = new SpeechSynthesisUtterance(reply);
 
@@ -163,6 +165,7 @@ const AIAssistant = () => {
     if (!input.trim()) return;
 
     const text = input.trim();
+
     setMessages((prev) => [...prev, { role: "user", content: text }]);
     setInput("");
     setIsLoading(true);
@@ -173,7 +176,7 @@ const AIAssistant = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 p-4">
       <div className="max-w-4xl mx-auto pt-4">
-        
+
         {/* HEADER */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -182,6 +185,8 @@ const AIAssistant = () => {
           </div>
 
           <div className="flex items-center gap-3">
+
+            {/* Language */}
             <Select value={language} onValueChange={setLanguage}>
               <SelectTrigger className="w-40">
                 <SelectValue placeholder="Select Language" />
@@ -193,6 +198,7 @@ const AIAssistant = () => {
               </SelectContent>
             </Select>
 
+            {/* Voice Output Toggle */}
             <Button
               variant="outline"
               size="icon"
@@ -213,6 +219,7 @@ const AIAssistant = () => {
         {/* CHAT WINDOW */}
         <Card className="p-6 mb-4 min-h-[480px] flex flex-col">
           <div className="flex-1 overflow-y-auto mb-4 space-y-4">
+
             {messages.length === 0 ? (
               <div className="text-center text-muted-foreground py-8">
                 <MessageSquare className="w-16 h-16 mx-auto mb-3 opacity-40" />
@@ -244,7 +251,7 @@ const AIAssistant = () => {
             )}
           </div>
 
-          {/* INPUT AREA */}
+          {/* INPUT BOX */}
           <div className="flex gap-2 items-end">
             <Textarea
               value={input}
@@ -254,7 +261,7 @@ const AIAssistant = () => {
               rows={2}
             />
 
-            {/* MIC */}
+            {/* MIC BUTTON */}
             {!isRecording ? (
               <Button size="icon" onClick={startRecording}>
                 <Mic className="w-5 h-5" />
@@ -265,7 +272,7 @@ const AIAssistant = () => {
               </Button>
             )}
 
-            {/* SEND */}
+            {/* SEND BUTTON */}
             <Button onClick={handleSend} size="icon" disabled={isLoading}>
               <Send className="w-5 h-5" />
             </Button>
