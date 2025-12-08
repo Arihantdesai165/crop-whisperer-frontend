@@ -129,7 +129,8 @@ const AIAssistant = () => {
   // ----------------------------------------------------
   const sendToAI = async (text: string) => {
     try {
-      const response = await fetch("http://localhost:8000/api/ai-assistant", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/voice-assistant`, {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text, lang: language }),
