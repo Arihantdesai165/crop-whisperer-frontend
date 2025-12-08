@@ -24,7 +24,9 @@ interface RecommendationResult {
 }
 
 const CropRecommendation = () => {
-  const { t, i18n } = useTranslation(); // ← ADDED i18n HERE
+  const { t, i18n } = useTranslation();
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<RecommendationResult | null>(null);
@@ -51,25 +53,25 @@ const CropRecommendation = () => {
     setResult(null);
 
     try {
-      const response = awaitfetch(`${import.meta.env.VITE_BACKEND_URL}/api/voice-assistant`, {
-
+      const response = await fetch(`${BACKEND_URL}/api/crop-recommendation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          lang: i18n.language   // ← SEND SELECTED LANGUAGE TO BACKEND
-        })
+          lang: i18n.language,
+        }),
       });
 
       const data = await response.json();
+
       if (!data || data.error) {
-        throw new Error(data?.error || "Failed to get recommendations");
+        throw new Error(data?.error || "Failed to generate recommendations");
       }
 
       setResult(data.recommendation);
       toast.success(t("cropRec.success"));
 
-    } catch (error: any) {
+    } catch (error) {
       toast.error(t("cropRec.error"));
     } finally {
       setIsLoading(false);
@@ -78,6 +80,7 @@ const CropRecommendation = () => {
 
   const handleDownloadPDF = () => {
     if (!result) return;
+
     try {
       generateCropRecommendationPDF(formData, result);
       toast.success(t("cropRec.pdfSuccess"));
@@ -88,7 +91,7 @@ const CropRecommendation = () => {
 
   return (
     <div className="min-h-screen bg-background">
-
+      
       {/* Header */}
       <header className="bg-gradient-earth text-primary-foreground shadow-medium">
         <div className="container mx-auto px-4 py-6 flex items-center gap-4">
@@ -116,6 +119,7 @@ const CropRecommendation = () => {
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+
               <div className="grid md:grid-cols-2 gap-6">
 
                 {/* Soil Type */}
@@ -137,18 +141,22 @@ const CropRecommendation = () => {
                 {/* Soil PH */}
                 <div className="space-y-2">
                   <Label>{t("cropRec.soilPH")}</Label>
-                  <Input type="number"
+                  <Input
+                    type="number"
                     value={formData.soilPH}
                     onChange={(e) => handleInputChange("soilPH", e.target.value)}
-                    placeholder={t("cropRec.examplePH")} />
+                    placeholder={t("cropRec.examplePH")}
+                  />
                 </div>
 
                 {/* Area */}
                 <div className="space-y-2">
                   <Label>{t("cropRec.area")} *</Label>
-                  <Input type="number"
+                  <Input
+                    type="number"
                     value={formData.area}
-                    onChange={(e) => handleInputChange("area", e.target.value)} />
+                    onChange={(e) => handleInputChange("area", e.target.value)}
+                  />
                 </div>
 
                 {/* Water Access */}
@@ -182,9 +190,11 @@ const CropRecommendation = () => {
                 {/* Budget */}
                 <div className="space-y-2">
                   <Label>{t("cropRec.budget")} *</Label>
-                  <Input type="number"
+                  <Input
+                    type="number"
                     value={formData.budget}
-                    onChange={(e) => handleInputChange("budget", e.target.value)} />
+                    onChange={(e) => handleInputChange("budget", e.target.value)}
+                  />
                 </div>
 
                 {/* Market Preference */}
@@ -206,7 +216,8 @@ const CropRecommendation = () => {
                   <Label>{t("cropRec.location")} *</Label>
                   <Input
                     value={formData.location}
-                    onChange={(e) => handleInputChange("location", e.target.value)} />
+                    onChange={(e) => handleInputChange("location", e.target.value)}
+                  />
                 </div>
               </div>
 
@@ -216,21 +227,27 @@ const CropRecommendation = () => {
                 <Textarea
                   value={formData.previousCrops}
                   onChange={(e) => handleInputChange("previousCrops", e.target.value)}
-                  placeholder={t("cropRec.previousExample")} />
+                  placeholder={t("cropRec.previousExample")}
+                />
               </div>
 
               {/* Submit Button */}
               <Button type="submit" size="lg" className="w-full" disabled={isLoading}>
-                {isLoading
-                  ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {t("cropRec.analyzing")}</>
-                  : t("cropRec.getRecommendations")}
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" /> 
+                    {t("cropRec.analyzing")}
+                  </>
+                ) : (
+                  t("cropRec.getRecommendations")
+                )}
               </Button>
 
             </form>
           </CardContent>
         </Card>
 
-        {/* Recommendations */}
+        {/* Recommendations Output */}
         {result && (
           <Card className="shadow-elevated">
             <CardHeader>
@@ -246,7 +263,9 @@ const CropRecommendation = () => {
                 <Card key={i} className="border-primary/20 border-2">
                   <CardHeader>
                     <CardTitle className="text-primary text-xl">{rec.cropName}</CardTitle>
-                    <p className="text-sm">{t("cropRec.confidence")}: {rec.confidence}%</p>
+                    <p className="text-sm">
+                      {t("cropRec.confidence")}: {rec.confidence}%
+                    </p>
                   </CardHeader>
 
                   <CardContent className="space-y-2">
@@ -259,10 +278,10 @@ const CropRecommendation = () => {
               ))}
 
               <Button onClick={handleDownloadPDF} variant="outline" className="w-full">
-                <Download className="mr-2 h-4 w-4" /> {t("cropRec.downloadPDF")}
+                <Download className="mr-2 h-4 w-4" /> 
+                {t("cropRec.downloadPDF")}
               </Button>
             </CardContent>
-
           </Card>
         )}
 
