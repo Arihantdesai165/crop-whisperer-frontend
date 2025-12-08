@@ -33,11 +33,13 @@ const AIAssistant = () => {
   const [language, setLanguage] = useState("en");
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [voiceOutput, setVoiceOutput] = useState(true); // Voice ON by default
+  const [voiceOutput, setVoiceOutput] = useState(true);
 
   const { toast } = useToast();
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunks = useRef<Blob[]>([]);
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; // 🔥 backend URL
 
   // ----------------------------------------------------
   // 🎤 START RECORDING
@@ -55,7 +57,7 @@ const AIAssistant = () => {
       };
 
       mediaRecorder.onstop = async () => {
-        const audioBlob = new Blob(audioChunks.current, { type: "audio/webm" }); // FIXED
+        const audioBlob = new Blob(audioChunks.current, { type: "audio/webm" });
         sendVoiceToAI(audioBlob);
       };
 
@@ -91,8 +93,7 @@ const AIAssistant = () => {
       formData.append("audio", audioBlob);
       formData.append("lang", language);
 
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/voice-assistant`, {
-
+      const response = await fetch(`${BACKEND_URL}/api/voice-assistant`, {
         method: "POST",
         body: formData,
       });
@@ -108,7 +109,6 @@ const AIAssistant = () => {
         return;
       }
 
-      // Add user transcription to chat
       setMessages((prev) => [
         ...prev,
         { role: "user", content: data.transcription },
@@ -125,12 +125,11 @@ const AIAssistant = () => {
   };
 
   // ----------------------------------------------------
-  // 🤖 SEND TEXT TO AI
+  // 🤖 SEND TEXT TO AI (TEXT ENDPOINT = ai-assistant)
   // ----------------------------------------------------
   const sendToAI = async (text: string) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/voice-assistant`, {
-
+      const response = await fetch(`${BACKEND_URL}/api/ai-assistant`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text, lang: language }),
@@ -141,7 +140,7 @@ const AIAssistant = () => {
 
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
 
-      // 🔊 Speak reply if voiceOutput = true
+      // 🔊 Voice Output
       if (voiceOutput) {
         const utterance = new SpeechSynthesisUtterance(reply);
 
@@ -158,7 +157,7 @@ const AIAssistant = () => {
   };
 
   // ----------------------------------------------------
-  // 💬 TEXT MANUAL SEND
+  // 💬 MANUAL TEXT SEND
   // ----------------------------------------------------
   const handleSend = () => {
     if (!input.trim()) return;
@@ -167,6 +166,7 @@ const AIAssistant = () => {
     setMessages((prev) => [...prev, { role: "user", content: text }]);
     setInput("");
     setIsLoading(true);
+
     sendToAI(text);
   };
 
@@ -182,7 +182,6 @@ const AIAssistant = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            {/* 🌍 Language selector */}
             <Select value={language} onValueChange={setLanguage}>
               <SelectTrigger className="w-40">
                 <SelectValue placeholder="Select Language" />
@@ -194,7 +193,6 @@ const AIAssistant = () => {
               </SelectContent>
             </Select>
 
-            {/* 🔊 Voice Toggle */}
             <Button
               variant="outline"
               size="icon"
@@ -256,7 +254,7 @@ const AIAssistant = () => {
               rows={2}
             />
 
-            {/* 🎤 MIC button */}
+            {/* MIC */}
             {!isRecording ? (
               <Button size="icon" onClick={startRecording}>
                 <Mic className="w-5 h-5" />
@@ -267,7 +265,7 @@ const AIAssistant = () => {
               </Button>
             )}
 
-            {/* SEND button */}
+            {/* SEND */}
             <Button onClick={handleSend} size="icon" disabled={isLoading}>
               <Send className="w-5 h-5" />
             </Button>
