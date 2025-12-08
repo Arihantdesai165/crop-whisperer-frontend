@@ -172,11 +172,71 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-border">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>© 2025 AgriTrust — {t("footer.text")}</p>
-        </div>
-      </footer>
+     <footer className="py-10 border-t border-border bg-muted/30 mt-12">
+  <div className="container mx-auto px-4 text-center">
+
+    {/* Copyright */}
+    <p className="text-sm text-muted-foreground mb-6">
+      © 2025 AgriTrust – All Rights Reserved
+    </p>
+
+    {/* Developer Title */}
+    <h3 className="text-lg font-semibold text-foreground mb-6">
+      Developed By:
+    </h3>
+
+    {/* Developer Cards */}
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+
+      {/* Arihant */}
+      <div className="p-5 rounded-xl border bg-background shadow-sm hover:shadow-lg hover:border-primary transition-all duration-200">
+        <p className="font-semibold text-base text-primary">Arihant Desai</p>
+        <a href="mailto:arihantdesai483@gmail.com"
+           className="text-blue-600 hover:underline text-sm">
+          arihantdesai483@gmail.com
+        </a>
+      </div>
+
+      {/* Yuvaraj */}
+      <div className="p-5 rounded-xl border bg-background shadow-sm hover:shadow-lg hover:border-primary transition-all duration-200">
+        <p className="font-semibold text-base text-primary">Yuvaraj Talwar</p>
+        <a href="mailto:yuvarajbtalawar99@gmail.com"
+           className="text-blue-600 hover:underline text-sm">
+          yuvarajbtalawar99@gmail.com
+        </a>
+      </div>
+
+      {/* Sourabh */}
+      <div className="p-5 rounded-xl border bg-background shadow-sm hover:shadow-lg hover:border-primary transition-all duration-200">
+        <p className="font-semibold text-base text-primary">Sourabh Patil</p>
+        <a href="mailto:sourabhppatil0@gmail.com"
+           className="text-blue-600 hover:underline text-sm">
+          sourabhppatil0@gmail.com
+        </a>
+      </div>
+
+      {/* Aditi */}
+      <div className="p-5 rounded-xl border bg-background shadow-sm hover:shadow-lg hover:border-primary transition-all duration-200">
+        <p className="font-semibold text-base text-primary">Aditi Hundre</p>
+        <a href="mailto:aditihundre0309@gmail.com"
+           className="text-blue-600 hover:underline text-sm">
+          aditihundre0309@gmail.com
+        </a>
+      </div>
+
+      {/* Shreelaxmi */}
+      <div className="p-5 rounded-xl border bg-background shadow-sm hover:shadow-lg hover:border-primary transition-all duration-200 sm:col-span-2 lg:col-span-1">
+        <p className="font-semibold text-base text-primary">Shreelaxmi Patil</p>
+        <a href="mailto:shreelaxmipatil175@gmail.com"
+           className="text-blue-600 hover:underline text-sm">
+          shreelaxmipatil175@gmail.com
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
     </div>
   );
 };
