@@ -91,7 +91,8 @@ const AIAssistant = () => {
       formData.append("audio", audioBlob);
       formData.append("lang", language);
 
-      const response = await fetch("http://localhost:8000/api/voice-assistant", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/voice-assistant`, {
+
         method: "POST",
         body: formData,
       });
