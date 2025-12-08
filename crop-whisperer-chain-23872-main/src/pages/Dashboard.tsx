@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
-
   const { t } = useTranslation();
 
-  // Logout function
+  // Logout
   const handleLogout = () => {
     window.location.href = "http://localhost/login/main.php?action=logout";
   };
@@ -16,33 +15,31 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background">
 
-      {/* Header */}
+      {/* HEADER */}
       <header className="bg-gradient-earth text-primary-foreground shadow-medium">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-4 py-6 flex items-center justify-between">
 
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 text-2xl font-bold">
-              <Leaf className="h-6 w-6" />
-              {t("dashboard.title")}
-            </Link>
+          {/* LOGO */}
+          <Link to="/" className="flex items-center gap-2 text-2xl font-bold">
+            <Leaf className="h-6 w-6" />
+            {t("dashboard.title")}
+          </Link>
 
-            {/* Logout Button */}
-            <Button
-              onClick={handleLogout}
-              variant="outline"
-              className="bg-red-500/20 border-red-500 text-red-600 hover:bg-red-500/30"
-            >
-              {t("dashboard.logout")}
-            </Button>
-          </div>
+          {/* LOGOUT BUTTON */}
+          <Button
+            onClick={handleLogout}
+            variant="outline"
+            className="bg-red-500/20 border-red-500 text-red-600 hover:bg-red-500/30"
+          >
+            {t("dashboard.logout")}
+          </Button>
         </div>
       </header>
 
-      {/* Main Content */}
+      {/* MAIN CONTENT */}
       <main className="container mx-auto px-4 py-8">
 
-        {/* Welcome Section */}
+        {/* WELCOME SECTION */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
             {t("dashboard.welcome")}
@@ -52,19 +49,17 @@ const Dashboard = () => {
           </p>
         </div>
 
-        {/* Quick Actions */}
+        {/* QUICK ACTIONS */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
 
-          {/* Recommend Crops */}
+          {/* CROPS RECOMMENDATION */}
           <Card className="hover:shadow-elevated transition-all cursor-pointer group">
             <CardHeader>
               <div className="bg-gradient-earth rounded-full w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Sprout className="h-6 w-6 text-primary-foreground" />
               </div>
               <CardTitle>{t("dashboard.recommendCrops")}</CardTitle>
-              <CardDescription>
-                {t("dashboard.recommendCropsDesc")}
-              </CardDescription>
+              <CardDescription>{t("dashboard.recommendCropsDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
               <Link to="/crop-recommendation">
@@ -75,16 +70,14 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          {/* Predict Yield */}
+          {/* PREDICT YIELD */}
           <Card className="hover:shadow-elevated transition-all cursor-pointer group">
             <CardHeader>
               <div className="bg-gradient-harvest rounded-full w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <TrendingUp className="h-6 w-6 text-accent-foreground" />
               </div>
               <CardTitle>{t("dashboard.predictYield")}</CardTitle>
-              <CardDescription>
-                {t("dashboard.predictYieldDesc")}
-              </CardDescription>
+              <CardDescription>{t("dashboard.predictYieldDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
               <Link to="/crop-yield-prediction">
@@ -95,16 +88,14 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          {/* AI Assistant */}
+          {/* AI ASSISTANT */}
           <Card className="hover:shadow-elevated transition-all cursor-pointer group">
             <CardHeader>
               <div className="bg-gradient-sky rounded-full w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <MessageCircle className="h-6 w-6 text-info-foreground" />
               </div>
               <CardTitle>{t("dashboard.aiAssistant")}</CardTitle>
-              <CardDescription>
-                {t("dashboard.aiAssistantDesc")}
-              </CardDescription>
+              <CardDescription>{t("dashboard.aiAssistantDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
               <Link to="/ai-assistant">
@@ -114,13 +105,12 @@ const Dashboard = () => {
               </Link>
             </CardContent>
           </Card>
-
         </div>
 
-        {/* Secondary Actions */}
+        {/* SECONDARY ACTIONS */}
         <div className="grid md:grid-cols-3 gap-6">
 
-          {/* Profile */}
+          {/* PROFILE */}
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
@@ -140,7 +130,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          {/* Records */}
+          {/* RECORDS */}
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
@@ -158,7 +148,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          {/* Blockchain Ledger */}
+          {/* BLOCKCHAIN */}
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
@@ -175,10 +165,9 @@ const Dashboard = () => {
               </Button>
             </CardContent>
           </Card>
-
         </div>
 
-        {/* Info Banner */}
+        {/* INFO BANNER */}
         <Card className="mt-8 bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
           <CardContent className="pt-6">
             <div className="flex items-start gap-4">
@@ -194,6 +183,7 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
+
       </main>
     </div>
   );
