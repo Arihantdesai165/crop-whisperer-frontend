@@ -224,13 +224,8 @@ const Index = () => {
         </a>
       </div>
 
-      {/* Shreelaxmi */}
-      <div className="p-5 rounded-xl border bg-background shadow-sm hover:shadow-lg hover:border-primary transition-all duration-200 sm:col-span-2 lg:col-span-1">
-        <p className="font-semibold text-base text-primary">Shreelaxmi Patil</p>
-        <a href="mailto:shreelaxmipatil175@gmail.com"
-           className="text-blue-600 hover:underline text-sm">
-          shreelaxmipatil175@gmail.com
-        </a>
+     
+    
       </div>
 
     </div>
